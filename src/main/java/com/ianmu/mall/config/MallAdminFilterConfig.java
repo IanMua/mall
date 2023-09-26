@@ -25,7 +25,6 @@ public class MallAdminFilterConfig {
         filterRegistrationBean.setFilter(mallAdminFilter());
         filterRegistrationBean.addUrlPatterns("/category/admin/*");
         filterRegistrationBean.addUrlPatterns("/product/admin/*");
-        filterRegistrationBean.addUrlPatterns("/admin/order/*");
         filterRegistrationBean.setName("adminFilterConfig");
 
         return filterRegistrationBean;
