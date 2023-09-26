@@ -1,0 +1,16 @@
+spring:
+    datasource:
+        url: "jdbc:mysql://mysql.ianmua.com:10001/imooc_mall?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai"
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: Ianmu0810
+    data:
+        redis:
+            host: mysql.ianmua.com
+            port: 10002
+            password: Ianmu0810
+            database: 0
+
+springdoc:
+    api-docs:
+        enabled: true

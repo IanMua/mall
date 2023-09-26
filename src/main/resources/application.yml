@@ -1,0 +1,21 @@
+server:
+    port: 8001
+spring:
+    profiles:
+        active: dev
+
+    servlet:
+        multipart:
+            # 上传文件大小上限
+            max-file-size: 10MB
+            max-request-size: 10MB
+
+mybatis:
+    mapper-locations: classpath:mappers/*.xml
+    configuration:
+        map-underscore-to-camel-case: true
+
+# 上传文件的路径
+file:
+    upload:
+        dir: F:\Project\Mine\LearnProject\Java\Shang1\learn-mall\upload\productPhoto
