@@ -1,5 +1,7 @@
 package com.ianmu.mall.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.ianmu.mall.common.Assert;
 import com.ianmu.mall.exception.MallExceptionEnum;
 import com.ianmu.mall.model.dao.ProductMapper;
@@ -9,6 +11,9 @@ import com.ianmu.mall.service.ProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ProductServiceImpl 商品服务实现类
@@ -44,5 +49,17 @@ public class ProductServiceImpl implements ProductService {
     public void delete(Integer id) {
         int count = productMapper.deleteByPrimaryKey(id);
         Assert.isZero(count, MallExceptionEnum.PRODUCT_NOT_EXISTED);
+    }
+
+    @Override
+    public void batchUpdateSellStatus(ArrayList<Integer> ids, Integer sellStatus) {
+        productMapper.batchUpdateSellStatus(ids, sellStatus);
+    }
+
+    @Override
+    public PageInfo<Product> listForAdmin(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Product> productList = productMapper.selectListForAdmin();
+        return new PageInfo<>(productList);
     }
 }

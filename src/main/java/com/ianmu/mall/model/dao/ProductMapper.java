@@ -2,6 +2,10 @@ package com.ianmu.mall.model.dao;
 
 import com.ianmu.mall.model.pojo.Product;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mapper
 public interface ProductMapper {
@@ -18,4 +22,8 @@ public interface ProductMapper {
     int updateByPrimaryKey(Product row);
 
     Product selectByName(String name);
+
+    int batchUpdateSellStatus(@Param("ids") ArrayList<Integer> ids, @Param("sellStatus") Integer sellStatus);
+
+    List<Product> selectListForAdmin();
 }

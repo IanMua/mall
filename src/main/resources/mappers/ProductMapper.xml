@@ -159,4 +159,19 @@
         FROM imooc_mall_product AS product
         WHERE product.name = #{name,jdbcType=VARCHAR}
     </select>
+
+    <update id="batchUpdateSellStatus">
+        UPDATE imooc_mall_product
+        SET status = #{sellStatus}
+        WHERE id IN
+        <foreach collection="ids" close=")" item="id" open="(" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectListForAdmin" resultType="com.ianmu.mall.model.pojo.Product">
+        SELECT *
+        FROM imooc_mall_product
+        ORDER BY update_time DESC
+    </select>
 </mapper>

@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -121,5 +123,27 @@ public class ProductAdminController {
         productService.delete(id);
 
         return ApiRestResponse.success();
+    }
+
+    @Operation(summary = "批量更新上下架")
+    @RequestMapping(value = "batchUpdateSellStatus", method = RequestMethod.POST)
+    public ApiRestResponse<Object> batchUpdateSellStatus(
+            @Valid
+            @Parameter(name = "ids", description = "商品ID列表") @NotEmpty(message = "商品ID不能为空") ArrayList<Integer> ids,
+            @Parameter(name = "sellStatus", description = "商品上下架状态") @NotNull(message = "商品上下架状不能为空") Integer sellStatus) {
+
+        productService.batchUpdateSellStatus(ids, sellStatus);
+
+        return ApiRestResponse.success();
+    }
+
+    @Operation(summary = "后台商品列表")
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public ApiRestResponse<Object> list(
+            @Valid
+            @Parameter(name = "pageNum", description = "页码") @NotNull(message = "页码不能为空") Integer pageNum,
+            @Parameter(name = "pageSize", description = "每页查询数量") @NotNull(message = "每页查询数量不能为空") Integer pageSize) {
+
+        return ApiRestResponse.success(productService.listForAdmin(pageNum, pageSize));
     }
 }
