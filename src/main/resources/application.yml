@@ -18,4 +18,4 @@ mybatis:
 # 上传文件的路径
 file:
     upload:
-        dir: F:\Project\Mine\LearnProject\Java\Shang1\learn-mall\upload\productPhoto
+        dir: F:\Project\Mine\LearnProject\Java\ianmu-mall\mall\upload\productPhoto\
