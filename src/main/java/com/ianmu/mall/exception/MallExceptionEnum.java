@@ -29,6 +29,7 @@ public enum MallExceptionEnum {
     // 商品异常
     PRODUCT_NAME_EXISTED(12001, "商品名称已存在"),
     PRODUCT_PHOTO_UPLOAD_FAILED(12002, "商品图片上传失败"),
+    PRODUCT_NOT_EXISTED(12001, "商品不存在"),
 
     // 请求异常
     REQUEST_NOT_NULL(18001, "请求参数不能为空"),

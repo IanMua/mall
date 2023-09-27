@@ -5,14 +5,20 @@ import com.ianmu.mall.common.Assert;
 import com.ianmu.mall.common.Constant;
 import com.ianmu.mall.exception.MallException;
 import com.ianmu.mall.exception.MallExceptionEnum;
+import com.ianmu.mall.model.pojo.Product;
 import com.ianmu.mall.model.request.AddProductReq;
+import com.ianmu.mall.model.request.UpdateProductReq;
 import com.ianmu.mall.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,8 +36,10 @@ import java.util.UUID;
  * @author darre
  * @version 2023/09/24 21:08
  **/
+@Tag(name = "商品", description = "商品管理")
 @RestController
 @RequestMapping("product/admin")
+@Validated
 public class ProductAdminController {
 
     @Autowired
@@ -93,5 +101,25 @@ public class ProductAdminController {
             effectiveURI = null;
         }
         return effectiveURI;
+    }
+
+    @Operation(summary = "更新商品")
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public ApiRestResponse<Object> update(@Valid @RequestBody(description = "更新商品请求参数") UpdateProductReq req) {
+
+        Product product = new Product();
+        BeanUtils.copyProperties(req, product);
+        productService.update(product);
+
+        return ApiRestResponse.success();
+    }
+
+    @Operation(summary = "删除商品")
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public ApiRestResponse<Object> delete(@NotNull(message = "商品ID不能为空") @Parameter(name = "id", description = "商品ID") Integer id) {
+
+        productService.delete(id);
+
+        return ApiRestResponse.success();
     }
 }

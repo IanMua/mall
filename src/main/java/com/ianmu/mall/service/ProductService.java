@@ -1,5 +1,6 @@
 package com.ianmu.mall.service;
 
+import com.ianmu.mall.model.pojo.Product;
 import com.ianmu.mall.model.request.AddProductReq;
 
 /**
@@ -10,4 +11,8 @@ import com.ianmu.mall.model.request.AddProductReq;
  **/
 public interface ProductService {
     void add(AddProductReq req);
+
+    void update(Product updateProduct);
+
+    void delete(Integer id);
 }

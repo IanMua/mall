@@ -33,4 +33,16 @@ public class ProductServiceImpl implements ProductService {
         int count = productMapper.insertSelective(product);
         Assert.isZero(count, MallExceptionEnum.INSERT_FAILED);
     }
+
+    @Override
+    public void update(Product updateProduct) {
+        int count = productMapper.updateByPrimaryKeySelective(updateProduct);
+        Assert.isZero(count, MallExceptionEnum.PRODUCT_NOT_EXISTED);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        int count = productMapper.deleteByPrimaryKey(id);
+        Assert.isZero(count, MallExceptionEnum.PRODUCT_NOT_EXISTED);
+    }
 }
