@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="fatal">
     <Properties>
-        <Property name="baseDir" value="F:\Project\Mine\LearnProject\Java\Shang1\learn-mall\logs"/>
+        <Property name="baseDir" value="F:\Project\Mine\LearnProject\Java\ianmu-mall\mall\logs"/>
     </Properties>
 
     <Appenders>
