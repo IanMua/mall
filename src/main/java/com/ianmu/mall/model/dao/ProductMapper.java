@@ -1,6 +1,7 @@
 package com.ianmu.mall.model.dao;
 
 import com.ianmu.mall.model.pojo.Product;
+import com.ianmu.mall.model.query.ProductListQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -26,4 +27,6 @@ public interface ProductMapper {
     int batchUpdateSellStatus(@Param("ids") ArrayList<Integer> ids, @Param("sellStatus") Integer sellStatus);
 
     List<Product> selectListForAdmin();
+
+    List<Product> selectList(@Param("query") ProductListQuery query);
 }

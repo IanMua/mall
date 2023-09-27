@@ -1,7 +1,10 @@
 package com.ianmu.mall.common;
 
+import io.lettuce.core.internal.LettuceSets;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 /**
  * Constant 常量
@@ -30,5 +33,9 @@ public class Constant {
     @Value("${file.upload.dir}")
     public void setFileUploadDir(String fileUploadDir) {
         FILE_UPLOAD_DIR = fileUploadDir;
+    }
+
+    public interface ProductListOrderBy {
+        Set<String> PRICE_ASC_DESC = LettuceSets.newHashSet("price desc", "price asc");
     }
 }

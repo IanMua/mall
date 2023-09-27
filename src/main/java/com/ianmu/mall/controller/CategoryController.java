@@ -82,7 +82,7 @@ public class CategoryController {
     @Operation(summary = "前台目录列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ApiRestResponse<Object> listCategoryForAdmin() {
-        List<CategoryVO> categoryVOList = categoryService.listCategoryForCustomer();
+        List<CategoryVO> categoryVOList = categoryService.listCategoryForCustomer(0);
 
         return ApiRestResponse.success(categoryVOList);
     }

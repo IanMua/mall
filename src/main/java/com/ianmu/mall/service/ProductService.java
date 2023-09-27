@@ -3,6 +3,7 @@ package com.ianmu.mall.service;
 import com.github.pagehelper.PageInfo;
 import com.ianmu.mall.model.pojo.Product;
 import com.ianmu.mall.model.request.AddProductReq;
+import com.ianmu.mall.model.request.ProductListReq;
 
 import java.util.ArrayList;
 
@@ -24,4 +25,6 @@ public interface ProductService {
     PageInfo<Product> listForAdmin(Integer pageNum, Integer pageSize);
 
     Product detail(Integer id);
+
+    PageInfo<Product> list(ProductListReq req);
 }

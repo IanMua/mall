@@ -1,9 +1,11 @@
 package com.ianmu.mall.controller;
 
 import com.ianmu.mall.common.ApiRestResponse;
+import com.ianmu.mall.model.request.ProductListReq;
 import com.ianmu.mall.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -32,5 +34,12 @@ public class ProductController {
     @RequestMapping(value = "detail", method = RequestMethod.GET)
     public ApiRestResponse<Object> detail(@Valid @Parameter(name = "id", description = "商品ID") @NotNull(message = "商品ID不能为空") Integer id) {
         return ApiRestResponse.success(productService.detail(id));
+    }
+
+    @Operation(summary = "商品列表")
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public ApiRestResponse<Object> list(@Valid @RequestBody(description = "商品列表查询参数") ProductListReq req) {
+
+        return ApiRestResponse.success(productService.list(req));
     }
 }
