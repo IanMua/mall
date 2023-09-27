@@ -1,11 +1,15 @@
 package com.ianmu.mall.common;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 /**
  * Constant 常量
  *
  * @author darre
  * @version 2023/09/17 19:02
  **/
+@Component
 public class Constant {
 
     /**
@@ -21,5 +25,10 @@ public class Constant {
     /**
      * 商品图片上传地址
      */
-    public static String FILE_UPLOAD_DIR = "F:\\Project\\Mine\\LearnProject\\Java\\Shang1\\learn-mall\\upload\\productPhoto\\";
+    public static String FILE_UPLOAD_DIR;
+
+    @Value("${file.upload.dir}")
+    public void setFileUploadDir(String fileUploadDir) {
+        FILE_UPLOAD_DIR = fileUploadDir;
+    }
 }
