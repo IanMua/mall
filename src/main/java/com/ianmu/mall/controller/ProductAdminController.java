@@ -38,7 +38,7 @@ import java.util.UUID;
  * @author darre
  * @version 2023/09/24 21:08
  **/
-@Tag(name = "商品", description = "商品管理")
+@Tag(name = "后台商品", description = "商品管理")
 @RestController
 @RequestMapping("product/admin")
 @Validated
