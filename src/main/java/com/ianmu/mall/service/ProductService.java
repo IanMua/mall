@@ -22,4 +22,6 @@ public interface ProductService {
     void batchUpdateSellStatus(ArrayList<Integer> ids, Integer sellStatus);
 
     PageInfo<Product> listForAdmin(Integer pageNum, Integer pageSize);
+
+    Product detail(Integer id);
 }

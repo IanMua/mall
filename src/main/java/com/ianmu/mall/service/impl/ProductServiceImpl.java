@@ -62,4 +62,9 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productList = productMapper.selectListForAdmin();
         return new PageInfo<>(productList);
     }
+
+    @Override
+    public Product detail(Integer id) {
+        return productMapper.selectByPrimaryKey(id);
+    }
 }
